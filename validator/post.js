@@ -1,46 +1,41 @@
-const {body} = require('express-validator');
+const { body } = require("express-validator");
 
 const createPost = [
-    body('title')
+  body("title").notEmpty().withMessage("title must not be empty."),
+  body("content")
     .notEmpty()
-    .withMessage('title must not be empty.'),
-    body('content')
-    .notEmpty()
-    .withMessage('content must not be empty')
+    .withMessage("content must not be empty")
     .isJSON()
-    .withMessage('content must be of type JSON'),
-    body('authorId')
+    .withMessage("content must be of type JSON"),
+  body("authorId")
     .notEmpty()
-    .withMessage('No valid author')
+    .withMessage("No valid author")
     .isNumeric()
-    .withMessage('authorId must be a number'),
-    body('publish')
+    .withMessage("authorId must be a number"),
+  body("publish")
     .notEmpty()
-    .withMessage('publish must not be empty')
+    .withMessage("publish must not be empty")
     .isBoolean()
-    .withMessage('publish must be of type boolean')
+    .withMessage("publish must be of type boolean"),
 ];
 
 const editPost = [
-    body('content')
+  body("content")
     .optional()
     .isJSON()
-    .withMessage('content must be of type JSON'),
-    body('publish')
+    .withMessage("content must be of type JSON"),
+  body("publish")
     .optional()
     .isBoolean()
-    .withMessage('publish must be of type boolean')
-]
+    .withMessage("publish must be of type boolean"),
+];
 
 const createComment = [
-    body("content")
-    .escape()
-    .notEmpty()
-    .withMessage("comment can not be empty")
+  body("content").escape().notEmpty().withMessage("comment can not be empty"),
 ];
 
 module.exports = {
-    createPost,
-    editPost,
-    createComment
-}
+  createPost,
+  editPost,
+  createComment,
+};
