@@ -32,7 +32,15 @@ const editPost = [
     .withMessage('publish must be of type boolean')
 ]
 
+const createComment = [
+    body("content")
+    .escape()
+    .notEmpty()
+    .withMessage("comment can not be empty")
+];
+
 module.exports = {
     createPost,
-    editPost
+    editPost,
+    createComment
 }
