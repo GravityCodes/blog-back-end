@@ -1,23 +1,18 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const { validationResult } = require("express-validator");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 //Post
 const fetchPosts = async (req, res) => {
   try {
-
-    const postList = await prisma.post.findMany(
-      {
-        include: {
-          comments: true,
-        },
-      }
-    );
+    const postList = await prisma.post.findMany({
+      include: {
+        comments: true,
+      },
+    });
     res.json(postList);
-    
   } catch (err) {
-    
     console.error(err);
     res
       .sendStatus(500)
@@ -104,7 +99,7 @@ const editPost = async (req, res) => {
       where: {
         id: Number(id),
         user: {
-          id: authorId
+          id: authorId,
         },
       },
       data: {
@@ -132,8 +127,8 @@ const deletePost = async (req, res) => {
       where: {
         id: Number(id),
         user: {
-          id: authorId
-        }
+          id: authorId,
+        },
       },
     });
 
@@ -233,8 +228,8 @@ const deleteComment = async (req, res) => {
       where: {
         id: Number(id),
         user: {
-          id: userId
-        }
+          id: userId,
+        },
       },
     });
 

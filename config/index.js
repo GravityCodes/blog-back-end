@@ -1,5 +1,5 @@
-const password = require('./password');
+const password = require("./password");
 
 module.exports = {
-  password
-}
+  password,
+};
