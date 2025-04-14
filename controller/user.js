@@ -17,8 +17,11 @@ const createUser = async (req, res) => {
 
     const {name, email, password} = req.body;
 
-    const hash = pswManager.hashPassword(password);
+    const hash = await pswManager.hashPassword(password);
 
+    // Future updates
+    // Check if user is already in database
+    
     const user = await prisma.user.create({
       data: {
         name,

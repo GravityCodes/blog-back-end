@@ -4,7 +4,7 @@ const validator = require('../validator/user');
 const route = Router();
 
 
-// route.get('/', controller.fetchUser);
+//route.get('/', controller.fetchUser);
 route.post('/', validator.createUser, controller.createUser);
 route.post('/login', validator.loginUser, controller.loginUser);
 // route.delete('/', controller.deleteUser);

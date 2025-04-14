@@ -1,14 +1,23 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const { validationResult } = require("express-validator");
+const jwt = require('jsonwebtoken');
 
 //Post
 const fetchPosts = async (req, res) => {
   try {
-    const postList = await prisma.post.findMany();
 
+    const postList = await prisma.post.findMany(
+      {
+        include: {
+          comments: true,
+        },
+      }
+    );
     res.json(postList);
+    
   } catch (err) {
+    
     console.error(err);
     res
       .sendStatus(500)
@@ -53,7 +62,9 @@ const createPost = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, content, authorId, publish } = req.body;
+    const { title, content, publish } = req.body;
+
+    const authorId = req.user.id;
 
     const post = await prisma.post.create({
       data: {
@@ -87,10 +98,14 @@ const editPost = async (req, res) => {
     const { title, content, publish } = req.body;
 
     const { id } = req.params;
+    const authorId = req.user.id;
 
     const post = await prisma.post.update({
       where: {
         id: Number(id),
+        user: {
+          id: authorId
+        },
       },
       data: {
         title,
@@ -111,10 +126,14 @@ const editPost = async (req, res) => {
 const deletePost = async (req, res) => {
   try {
     const { id } = req.params;
+    const authorId = req.user.id;
 
     const post = await prisma.post.delete({
       where: {
         id: Number(id),
+        user: {
+          id: authorId
+        }
       },
     });
 
@@ -180,13 +199,8 @@ const createComment = async (req, res) => {
 
     const { postid } = req.params;
     const { content } = req.body;
-    //Temporary user object//
-    const user = {
-      id: 1,
-    };
-    ////////////////////////
 
-    const userid = user.id;
+    const userid = req.user.id;
 
     const comment = await prisma.comment.create({
       data: {
@@ -214,10 +228,13 @@ const createComment = async (req, res) => {
 const deleteComment = async (req, res) => {
   try {
     const { id } = req.params;
-
+    const userId = req.user.id;
     const comment = await prisma.comment.delete({
       where: {
         id: Number(id),
+        user: {
+          id: userId
+        }
       },
     });
 
