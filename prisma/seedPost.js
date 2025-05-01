@@ -15,210 +15,153 @@ model Post {
 }
 `;
 const postList = [
-  {
-    id: 1,
-    title: "The Art of Homemade Pizza",
-    content: {
-      time: 1744036541508,
-      blocks: [
-        {
-          id: "intro1",
-          type: "paragraph",
-          data: {
-            text: "Craving that perfect slice? Let's dive into the delicious world of homemade pizza and learn how to create a pie that rivals your favorite pizzeria.",
+    {
+      id: 1,
+      title: "Why You Should Learn JavaScript First",
+      content: {
+        "time": 1745880000000,
+        "blocks": [
+          {
+            "id": "intro1",
+            "type": "header",
+            "data": {
+              "text": "Why You Should Learn JavaScript First",
+              "level": 2
+            }
           },
-        },
-        {
-          id: "header1",
-          type: "header",
-          data: {
-            text: "Why Make Pizza at Home?",
-            level: 3,
+          {
+            "id": "para1",
+            "type": "paragraph",
+            "data": {
+              "text": "JavaScript is one of the most widely used programming languages today, especially for web development. It's beginner-friendly, has a massive community, and runs in every modern browser."
+            }
           },
-        },
-        {
-          id: "list1",
-          type: "list",
-          data: {
-            type: "unordered",
-            items: [
-              "You control the ingredients and flavors",
-              "It's fun and perfect for family nights",
-              "Cost-effective and customizable",
-            ],
+          {
+            "id": "list1",
+            "type": "list",
+            "data": {
+              "style": "unordered",
+              "items": [
+                "Runs in any browser",
+                "Massive community and learning resources",
+                "Used for both frontend and backend"
+              ]
+            }
           },
-        },
-        {
-          id: "header2",
-          type: "header",
-          data: {
-            text: "Essential Ingredients",
-            level: 3,
-          },
-        },
-        {
-          id: "para2",
-          type: "paragraph",
-          data: {
-            text: "All you need is high-protein flour, water, yeast, olive oil, and salt. Top it off with homemade sauce, mozzarella, and your favorite toppings.",
-          },
-        },
-        {
-          id: "image1",
-          type: "image",
-          data: {
-            file: {
-              url: "https://example.com/images/pizza.jpg",
-            },
-            withBorder: true,
-            withBackground: false,
-            stretched: false,
-            caption: "Freshly baked Margherita pizza with basil.",
-          },
-        },
-      ],
+          {
+            "id": "para2",
+            "type": "paragraph",
+            "data": {
+              "text": "Learning JavaScript first gives you a strong foundation for web development and makes it easier to transition into other frameworks and languages later."
+            }
+          }
+        ]
+      }
+      ,
+      authorId: 1,
+      publish: true
     },
-    authorId: 1,
-    publish: true,
-  },
-  {
-    id: 2,
-    title: "Avocado Toast: A Breakfast Delight",
-    content: {
-      time: 1744036541508,
-      blocks: [
-        {
-          id: "intro2",
-          type: "paragraph",
-          data: {
-            text: "Avocado toast is not just a trend; it's a delicious and nutritious way to start your day. Let's explore how to make the perfect avocado toast.",
+    {
+      id: 2,
+      title: "Understanding Asynchronous Programming in JavaScript",
+      content: {
+        "time": 1745880100000,
+        "blocks": [
+          {
+            "id": "async1",
+            "type": "header",
+            "data": {
+              "text": "Understanding Asynchronous Programming in JavaScript",
+              "level": 2
+            }
           },
-        },
-        {
-          id: "header3",
-          type: "header",
-          data: {
-            text: "Why Avocado Toast?",
-            level: 3,
+          {
+            "id": "para1",
+            "type": "paragraph",
+            "data": {
+              "text": "JavaScript is single-threaded, which means it can only do one thing at a time. Asynchronous programming lets you run tasks in the background without blocking the main thread."
+            }
           },
-        },
-        {
-          id: "list2",
-          type: "list",
-          data: {
-            type: "unordered",
-            items: [
-              "Rich in healthy fats and fiber",
-              "Quick and easy to prepare",
-              "Versatile with endless topping options",
-            ],
+          {
+            "id": "list2",
+            "type": "list",
+            "data": {
+              "style": "unordered",
+              "items": [
+                "Callbacks",
+                "Promises",
+                "Async/Await"
+              ]
+            }
           },
-        },
-        {
-          id: "header4",
-          type: "header",
-          data: {
-            text: "Basic Recipe",
-            level: 3,
+          {
+            "id": "code1",
+            "type": "code",
+            "data": {
+              "code": "async function fetchData() {\n  const res = await fetch('/api/data');\n  const json = await res.json();\n  console.log(json);\n}"
+            }
           },
-        },
-        {
-          id: "para3",
-          type: "paragraph",
-          data: {
-            text: "<strong>Ingredients:</strong> Ripe avocados, whole-grain bread, salt, pepper, lemon juice.",
-          },
-        },
-        {
-          id: "image2",
-          type: "image",
-          data: {
-            file: {
-              url: "https://example.com/images/avocado-toast.jpg",
-            },
-            withBorder: true,
-            withBackground: false,
-            stretched: false,
-            caption: "Perfectly ripe avocado on toasted bread.",
-          },
-        },
-      ],
+          {
+            "id": "para2",
+            "type": "paragraph",
+            "data": {
+              "text": "Understanding async code helps you write non-blocking apps and improves performance when working with APIs or databases."
+            }
+          }
+        ]
+      }
+      ,
+      authorId: 1,
+      publish: true
     },
-    authorId: 1,
-    publish: true,
-  },
-  {
-    id: 3,
-    title: "Ramen at Home: Comfort in a Bowl",
-    content: {
-      time: 1744036541508,
-      blocks: [
-        {
-          id: "intro3",
-          type: "paragraph",
-          data: {
-            text: "Rainy day? Nothing beats a warm bowl of ramen. Here’s how you can make an impressive bowl of comfort right at home.",
+    {
+      id: 3,
+      title: "Getting Started with Git and GitHub",
+      content: {
+        "time": 1745880200000,
+        "blocks": [
+          {
+            "id": "git1",
+            "type": "header",
+            "data": {
+              "text": "Getting Started with Git and GitHub",
+              "level": 2
+            }
           },
-        },
-        {
-          id: "header1",
-          type: "header",
-          data: {
-            text: "Build Your Bowl",
-            level: 3,
+          {
+            "id": "para1",
+            "type": "paragraph",
+            "data": {
+              "text": "Git is a version control system that lets you track changes in your code. GitHub is a platform for hosting and collaborating on Git repositories."
+            }
           },
-        },
-        {
-          id: "list1",
-          type: "list",
-          data: {
-            type: "unordered",
-            items: [
-              "Broth (chicken, pork, or veggie)",
-              "Ramen noodles",
-              "Toppings: soft-boiled egg, green onions, mushrooms",
-            ],
+          {
+            "id": "list3",
+            "type": "list",
+            "data": {
+              "style": "unordered",
+              "items": [
+                "Initialize a Git repository with `git init`",
+                "Track files with `git add .`",
+                "Commit changes with `git commit -m \"message\"`",
+                "Push to GitHub with `git push origin main`"
+              ]
+            }
           },
-        },
-        {
-          id: "para1",
-          type: "paragraph",
-          data: {
-            text: "Simmer your broth with garlic and miso paste for depth. Cook noodles until chewy and add your favorite toppings.",
-          },
-        },
-        {
-          id: "attaches1",
-          type: "attaches",
-          data: {
-            file: {
-              url: "https://example.com/files/ramen-recipe.pdf",
-              size: 20480,
-              name: "ramen-recipe.pdf",
-              extension: "pdf",
-            },
-            title: "Full Ramen Recipe",
-          },
-        },
-        {
-          id: "image3",
-          type: "image",
-          data: {
-            file: {
-              url: "https://example.com/images/ramen-bowl.jpg",
-            },
-            withBorder: false,
-            withBackground: true,
-            stretched: false,
-            caption:
-              "Homemade miso ramen topped with soft-boiled egg and scallions.",
-          },
-        },
-      ],
-    },
-    authorId: 1,
-    publish: true,
-  },
+          {
+            "id": "quote1",
+            "type": "quote",
+            "data": {
+              "text": "Version control is a must-have skill for any serious developer.",
+              "caption": "— Every dev ever"
+            }
+          }
+        ]
+      }
+      ,
+      authorId: 1,
+      publish: true
+    }
 ];
 
 async function main() {
@@ -239,9 +182,10 @@ async function main() {
         },
       });
       console.log(`Created post with id: ${createdPost.id}`);
+    }else {
+      console.log(`Post with id ${post.id} already exist`);
     }
 
-    console.log(`Post with id ${post.id} already exist`);
   }
 }
 
