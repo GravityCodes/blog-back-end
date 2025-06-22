@@ -54,15 +54,28 @@ const loginUser = async (req, res) => {
       },
     });
 
+    if(!user) {
+      res.status(404).json({msg: "No user found"});
+    }
+
     if (!pswManager.checkPassword(password, user.password)) {
       return res.status(401).json({ msg: "Incorect password" });
     }
 
-    const token = jwt.sign(user, process.env.SECRET_KEY, {
-      expiresIn: "7d",
+    
+    const token = jwt.sign({userId : user.id, email: user.email}, process.env.SECRET_KEY, {
+      expiresIn: "7d"
     });
 
-    res.status(200).json({ token });
+    const milliseconds = 7 * 24 * 60 * 60 * 1000; // 7 days 
+
+    return res.status(200).cookie('token',token, {
+      maxAge: milliseconds,
+      // httpOnly: true,
+      // secure: false,
+      // sameSite: "strict",
+    }).json({msg : "Login successful"});
+
   } catch (err) {
     console.error(err);
     return res
