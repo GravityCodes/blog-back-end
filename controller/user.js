@@ -71,9 +71,9 @@ const loginUser = async (req, res) => {
 
     return res.status(200).cookie('token',token, {
       maxAge: milliseconds,
-      // httpOnly: true,
-      // secure: false,
-      // sameSite: "strict",
+       httpOnly: true,
+       secure: process.env.NODE_ENV === 'production' ? true : false,
+       sameSite: "lax",
     }).json({msg : "Login successful"});
 
   } catch (err) {
