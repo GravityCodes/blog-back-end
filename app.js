@@ -2,8 +2,14 @@ const express = require("express");
 const cookieparser = require('cookie-parser');
 const routes = require("./routes");
 const app = express();
-
+const cors = require('cors');
 app.use(cookieparser());
+
+app.use(cors({
+  origin: "http://127.0.0.1:4321",
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
