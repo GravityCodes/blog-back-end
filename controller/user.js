@@ -53,9 +53,10 @@ const loginUser = async (req, res) => {
         email,
       },
     });
+    
 
     if(!user) {
-      res.status(404).json({msg: "No user found"});
+      return res.status(404).json({msg: "No user found"});
     }
 
     if (!pswManager.checkPassword(password, user.password)) {
@@ -84,7 +85,18 @@ const loginUser = async (req, res) => {
   }
 };
 
+const logoutUser = async (req, res) => {
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production' ? true : false,
+    sameSite: "lax",
+  });
+
+  res.status(200).json({msg: "Logged out succesfully"});
+}
+
 module.exports = {
   createUser,
   loginUser,
+  logoutUser
 };
