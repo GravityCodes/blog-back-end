@@ -6,7 +6,7 @@ const cors = require('cors');
 app.use(cookieparser());
 
 app.use(cors({
-  origin: "http://127.0.0.1:4321",
+  origin: process.env.ORIGIN_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
