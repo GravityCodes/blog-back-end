@@ -16,9 +16,16 @@ const createUser = async (req, res) => {
     const { name, email, password } = req.body;
 
     const hash = await pswManager.hashPassword(password);
+    
+    const findUser = await prisma.user.findUnique({
+      where: {
+        email: email
+      }
+    });
 
-    // Future updates
-    // Check if user is already in database
+    if(findUser){
+      return res.status(409).json({msg: "Email is already in use"});
+    }
 
     const user = await prisma.user.create({
       data: {
@@ -46,7 +53,9 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
+
     const { email, password } = req.body;
+
 
     const user = await prisma.user.findUnique({
       where: {
@@ -56,14 +65,15 @@ const loginUser = async (req, res) => {
     
 
     if(!user) {
-      return res.status(404).json({msg: "No user found"});
+      return res.status(404).json({msg: "Incorrect Email or Password"});
     }
 
-    if (!pswManager.checkPassword(password, user.password)) {
-      return res.status(401).json({ msg: "Incorect password" });
+    const checkPassword = await pswManager.checkPassword(password, user.password);
+
+    if (!checkPassword) {
+      return res.status(401).json({ msg: "Incorrect Email or Password" });
     }
 
-    
     const token = jwt.sign({userId : user.id, email: user.email}, process.env.SECRET_KEY, {
       expiresIn: "7d"
     });

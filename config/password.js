@@ -4,7 +4,6 @@ const hashPassword = async (password) => {
   try {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-
     return hashedPassword;
   } catch (err) {
     console.error(err);
@@ -17,7 +16,7 @@ const hashPassword = async (password) => {
 const checkPassword = async (password, hash) => {
   try {
     const result = await bcrypt.compare(password, hash);
-
+    
     return result;
   } catch (err) {
     console.error(err);
