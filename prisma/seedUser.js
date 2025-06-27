@@ -1,6 +1,6 @@
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-
+import pswManager from "../config/password.js";
 //user model
 `
 model User {
@@ -14,12 +14,15 @@ model User {
 }
 
 `;
+
+const password = await pswManager.hashPassword("test");
+
 async function main() {
   const users = [
     {
       name: "Johan Mesa",
-      email: "Johan.mesa2001@gmail.com",
-      password: "test",
+      email: "johan.mesa2001@gmail.com",
+      password: password,
       author: true,
     },
   ];
