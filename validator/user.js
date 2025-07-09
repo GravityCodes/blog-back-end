@@ -3,20 +3,20 @@ const { body } = require("express-validator");
 const createUser = [
   body("email")
     .notEmpty()
-    .withMessage("email must not be empty")
+    .withMessage("Email must not be empty")
     .isEmail()
-    .withMessage("email has incorrect format"),
-  body("password").notEmpty().withMessage("password must not be empty"),
-  body("name").notEmpty().withMessage("name must not be empty"),
+    .withMessage("Email has incorrect format"),
+  body("password").notEmpty().withMessage("Password must not be empty"),
+  body("name").notEmpty().withMessage("Name must not be empty"),
 ];
 
 const loginUser = [
   body("email")
     .notEmpty()
-    .withMessage("email must not be empty")
+    .withMessage("Email must not be empty")
     .isEmail()
-    .withMessage("email has incorrect format"),
-  body("password").notEmpty().withMessage("password must not be empty"),
+    .withMessage("Email has incorrect format"),
+  body("password").notEmpty().withMessage("Password must not be empty"),
 ];
 
 module.exports = {
