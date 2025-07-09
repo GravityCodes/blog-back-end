@@ -65,13 +65,13 @@ const loginUser = async (req, res) => {
     
 
     if(!user) {
-      return res.status(404).json({msg: "Incorrect Email or Password"});
+      return res.status(404).json({errors: [{msg:"Incorrect Email or Password"}]});
     }
 
     const checkPassword = await pswManager.checkPassword(password, user.password);
 
     if (!checkPassword) {
-      return res.status(401).json({ msg: "Incorrect Email or Password" });
+      return res.status(401).json({ errors: [{msg:"Incorrect Email or Password"}] });
     }
 
     const token = jwt.sign({userId : user.id, email: user.email}, process.env.SECRET_KEY, {
