@@ -151,7 +151,18 @@ const fetchComments = async (req, res) => {
         id: Number(postid),
       },
       select: {
-        comments: true,
+        comments: {
+          select: {
+            id: true,
+            content: true,
+            userId: true,
+            user: {
+              select: {
+                name: true,
+              }
+            }
+          }
+        },
       },
     });
 
