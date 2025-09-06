@@ -7,6 +7,7 @@ const route = Router();
 route.post("/logout", controller.logoutUser);
 route.post("/signup", validator.createUser, controller.createUser);
 route.post("/login", validator.loginUser, controller.loginUser);
+route.post("/admin", validator.loginUser, controller.loginAdmin);
 // route.delete('/', controller.deleteUser);
 // route.put('/', constroller.updateUser );
 
