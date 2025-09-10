@@ -5,11 +5,22 @@ const app = express();
 const cors = require('cors');
 app.use(cookieparser());
 
-app.use(cors({
-  origin: process.env.ORIGIN_URL,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true
-}));
+const whitelist = [process.env.ORIGIN_URL, process.env.ORIGIN_URL_2];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  })
+);
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
