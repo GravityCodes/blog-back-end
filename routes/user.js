@@ -2,8 +2,9 @@ const { Router } = require("express");
 const controller = require("../controller/user");
 const validator = require("../validator/user");
 const route = Router();
+const { token } = require("../middleware/index");
 
-//route.get('/', controller.fetchUser);
+route.get("/", token.verifyToken, controller.fetchUser);
 route.post("/logout", controller.logoutUser);
 route.post("/signup", validator.createUser, controller.createUser);
 route.post("/login", validator.loginUser, controller.loginUser);

@@ -31,7 +31,11 @@ const editPost = [
 ];
 
 const createComment = [
-  body("content").trim().notEmpty().withMessage("comment can not be empty").escape(),
+  body("content")
+    .trim()
+    .notEmpty()
+    .withMessage("comment can not be empty")
+    .escape(),
 ];
 
 module.exports = {

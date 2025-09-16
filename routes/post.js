@@ -36,4 +36,7 @@ route.delete(
   controller.deleteComment,
 );
 
+//post admin routes
+route.get("/admin", token.verifyToken, controller.fetchAdminPost);
+
 module.exports = route;

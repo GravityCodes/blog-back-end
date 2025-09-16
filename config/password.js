@@ -16,7 +16,7 @@ const hashPassword = async (password) => {
 const checkPassword = async (password, hash) => {
   try {
     const result = await bcrypt.compare(password, hash);
-    
+
     return result;
   } catch (err) {
     console.error(err);

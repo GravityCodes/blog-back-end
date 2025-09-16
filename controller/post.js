@@ -7,6 +7,9 @@ const jwt = require("jsonwebtoken");
 const fetchPosts = async (req, res) => {
   try {
     const postList = await prisma.post.findMany({
+      where: {
+        publish: true,
+      },
       include: {
         comments: true,
       },
@@ -31,6 +34,7 @@ const fetchPost = async (req, res) => {
     const post = await prisma.post.findUnique({
       where: {
         id: Number(id),
+        publish: true,
       },
       include: {
         comments: true,
@@ -141,6 +145,30 @@ const deletePost = async (req, res) => {
   }
 };
 
+const fetchAdminPost = async (req, res) => {
+  try {
+    const user = req.user;
+
+    const request = await prisma.post.findMany({
+      where: {
+        authorId: user.id,
+      },
+    });
+
+    if (!request) {
+      return res.status(404).json({ msg: "No post found" });
+    }
+
+    return res.status(200).json(request);
+  } catch (error) {
+    return res
+      .status(500)
+      .json({
+        msg: "A internal server error occured. Please try again later.",
+      });
+  }
+};
+
 //Comments
 const fetchComments = async (req, res) => {
   try {
@@ -159,9 +187,9 @@ const fetchComments = async (req, res) => {
             user: {
               select: {
                 name: true,
-              }
-            }
-          }
+              },
+            },
+          },
         },
       },
     });
@@ -260,4 +288,5 @@ module.exports = {
   fetchComment,
   createComment,
   deleteComment,
+  fetchAdminPost,
 };
