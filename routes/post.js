@@ -6,6 +6,8 @@ const { token } = require("../middleware");
 
 //post
 route.get("/", controller.fetchPosts);
+//post admin routes
+route.get("/admin", token.verifyToken, controller.fetchAdminPost);
 route.get("/:id", controller.fetchPost);
 route.post(
   "/",
@@ -36,7 +38,6 @@ route.delete(
   controller.deleteComment,
 );
 
-//post admin routes
-route.get("/admin", token.verifyToken, controller.fetchAdminPost);
+
 
 module.exports = route;
