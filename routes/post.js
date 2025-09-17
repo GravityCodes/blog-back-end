@@ -7,6 +7,7 @@ const { token } = require("../middleware");
 //post
 route.get("/", controller.fetchPosts);
 route.get("/admin", token.verifyToken, controller.fetchAdminPosts);
+route.get("/admin/:id", token.verifyToken, controller.fetchAdminPost);
 route.get("/:id", controller.fetchPost);
 route.post(
   "/",
