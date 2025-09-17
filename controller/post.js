@@ -145,7 +145,7 @@ const deletePost = async (req, res) => {
   }
 };
 
-const fetchAdminPost = async (req, res) => {
+const fetchAdminPosts = async (req, res) => {
   try {
     const user = req.user;
 
@@ -288,5 +288,5 @@ module.exports = {
   fetchComment,
   createComment,
   deleteComment,
-  fetchAdminPost,
+  fetchAdminPosts,
 };
