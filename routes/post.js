@@ -16,7 +16,7 @@ route.post(
   controller.createPost,
 );
 route.put(
-  "/:id",
+  "/admin/:id",
   token.verifyToken,
   validator.post.editPost,
   controller.editPost,

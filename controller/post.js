@@ -102,13 +102,13 @@ const editPost = async (req, res) => {
     const post = await prisma.post.update({
       where: {
         id: Number(id),
-        user: {
+        author: {
           id: authorId,
         },
       },
       data: {
         title,
-        content: JSON.parse(content),
+        content: content,
         publish: Boolean(publish),
       },
     });

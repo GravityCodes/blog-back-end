@@ -22,7 +22,7 @@ const createPost = [
 const editPost = [
   body("content")
     .optional()
-    .isJSON()
+    .isObject()
     .withMessage("content must be of type JSON"),
   body("publish")
     .optional()
