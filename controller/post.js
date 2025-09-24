@@ -161,37 +161,38 @@ const fetchAdminPosts = async (req, res) => {
 
     return res.status(200).json(request);
   } catch (error) {
-    return res
-      .status(500)
-      .json({
-        msg: "A internal server error occured. Please try again later.",
-      });
+    return res.status(500).json({
+      msg: "A internal server error occured. Please try again later.",
+    });
   }
 };
 
 const fetchAdminPost = async (req, res) => {
-  try{
-    const {id} = req.params;
+  try {
+    const { id } = req.params;
     const userId = req.user.id;
 
     const post = await prisma.post.findFirst({
-      where : {
+      where: {
         id: Number(id),
         authorId: userId,
       },
     });
 
-    if(!post){
-      return res.status(404).json({msg: "No post found"});
+    if (!post) {
+      return res.status(404).json({ msg: "No post found" });
     }
 
     return res.status(200).json(post);
-
-  }catch(error){
+  } catch (error) {
     console.error(error);
-    return res.status(500).json({msg: "A internal server error occured. Please try again later.".at,});
+    return res
+      .status(500)
+      .json({
+        msg: "A internal server error occured. Please try again later.".at,
+      });
   }
-}
+};
 
 //Comments
 const fetchComments = async (req, res) => {
@@ -313,5 +314,5 @@ module.exports = {
   createComment,
   deleteComment,
   fetchAdminPosts,
-  fetchAdminPost
+  fetchAdminPost,
 };

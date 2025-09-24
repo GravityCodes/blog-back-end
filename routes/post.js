@@ -38,6 +38,4 @@ route.delete(
   controller.deleteComment,
 );
 
-
-
 module.exports = route;
