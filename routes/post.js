@@ -10,7 +10,7 @@ route.get("/admin", token.verifyToken, controller.fetchAdminPosts);
 route.get("/admin/:id", token.verifyToken, controller.fetchAdminPost);
 route.get("/:id", controller.fetchPost);
 route.post(
-  "/",
+  "/admin",
   token.verifyToken,
   validator.post.createPost,
   controller.createPost,
@@ -21,7 +21,7 @@ route.put(
   validator.post.editPost,
   controller.editPost,
 );
-route.delete("/:id", token.verifyToken, controller.deletePost);
+route.delete("/admin/:id", token.verifyToken, controller.deletePost);
 
 //comment
 route.get("/:postid/comments", controller.fetchComments);
