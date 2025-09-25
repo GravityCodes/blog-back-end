@@ -1,15 +1,13 @@
 const bcrypt = require("bcrypt");
 
-const hashPassword = async (password) => {
+const hashPassword = async (password, res) => {
   try {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     return hashedPassword;
   } catch (err) {
     console.error(err);
-    return res
-      .status(500)
-      .json("A server error has occured. Please try again later.");
+    return null;
   }
 };
 
@@ -20,9 +18,7 @@ const checkPassword = async (password, hash) => {
     return result;
   } catch (err) {
     console.error(err);
-    return res
-      .status(500)
-      .json("A server error has occured. Please try again later.");
+    return null;
   }
 };
 
