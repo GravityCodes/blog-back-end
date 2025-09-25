@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const { validationResult } = require("express-validator");
+const pswManager = require("../config/password");
 const jwt = require("jsonwebtoken");
 
 //Post
@@ -68,7 +69,7 @@ const createPost = async (req, res) => {
     const post = await prisma.post.create({
       data: {
         title,
-        content: JSON.parse(content),
+        content: content,
         author: {
           connect: {
             id: Number(authorId),
@@ -125,12 +126,37 @@ const editPost = async (req, res) => {
 const deletePost = async (req, res) => {
   try {
     const { id } = req.params;
-    const authorId = req.user.id;
+    const { password } = req.body;
+    const user = req.user;
+
+    const authorId = user.id;
+
+    const userPassword = await prisma.user.findFirst({
+      where: {
+        id: user.id,
+      },
+      select: {
+        password: true,
+      },
+    });
+
+    if (!userPassword) {
+      return res.status(404).json("No user Found");
+    }
+
+    const checkPassword = await pswManager.checkPassword(
+      password,
+      userPassword.password,
+    );
+
+    if (!checkPassword) {
+      return res.status(401).json({ msg: "Incorrect password" });
+    }
 
     const post = await prisma.post.delete({
       where: {
         id: Number(id),
-        user: {
+        author: {
           id: authorId,
         },
       },
@@ -186,11 +212,9 @@ const fetchAdminPost = async (req, res) => {
     return res.status(200).json(post);
   } catch (error) {
     console.error(error);
-    return res
-      .status(500)
-      .json({
-        msg: "A internal server error occured. Please try again later.".at,
-      });
+    return res.status(500).json({
+      msg: "A internal server error occured. Please try again later.".at,
+    });
   }
 };
 
