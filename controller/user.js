@@ -127,11 +127,16 @@ const loginAdmin = async (req, res) => {
         .json({ errors: [{ msg: "Incorrect Email or Password" }] });
     }
 
-    // const checkPassword = await pswManager.checkPassword(password, user.password);
+    const checkPassword = await pswManager.checkPassword(
+      password,
+      user.password,
+    );
 
-    // if (!checkPassword) {
-    //   return res.status(401).json({ errors: [{msg:"Incorrect Email or Password"}] });
-    // }
+    if (!checkPassword) {
+      return res
+        .status(401)
+        .json({ errors: [{ msg: "Incorrect Email or Password" }] });
+    }
 
     //check if user is a admin
 
