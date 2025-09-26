@@ -179,6 +179,9 @@ const fetchAdminPosts = async (req, res) => {
       where: {
         authorId: user.id,
       },
+      include: {
+        comments: true,
+      },
     });
 
     if (!request) {
@@ -202,6 +205,9 @@ const fetchAdminPost = async (req, res) => {
       where: {
         id: Number(id),
         authorId: userId,
+      },
+      include: {
+        comments: true,
       },
     });
 
@@ -282,7 +288,7 @@ const createComment = async (req, res) => {
 
     const { postid } = req.params;
     const { content } = req.body;
-    const userid = req.user.userId;
+    const userid = req.user.id;
 
     const comment = await prisma.comment.create({
       data: {
