@@ -261,7 +261,6 @@ const fetchComments = async (req, res) => {
 const fetchComment = async (req, res) => {
   try {
     const { postid, id } = req.params;
-
     const comment = await prisma.comment.findUnique({
       where: {
         id: Number(id),
