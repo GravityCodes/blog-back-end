@@ -20,8 +20,10 @@ RUN chmod +x docker-entrypoint.sh
 # generate prisma schema
 RUN npx prisma generate
 
+ENV PORT=8080
+
 # Expose the port so our computer can access it
-EXPOSE 3000
+EXPOSE 8080
 
 # Run the app
 CMD ["./docker-entrypoint.sh"]

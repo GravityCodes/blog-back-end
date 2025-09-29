@@ -3,7 +3,12 @@ const cookieparser = require("cookie-parser");
 const routes = require("./routes");
 const app = express();
 const cors = require("cors");
+
+
 app.use(cookieparser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 const whitelist = [process.env.ORIGIN_URL, process.env.ORIGIN_URL_2];
 
@@ -16,19 +21,14 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   }),
 );
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-const PORT = process.env.PORT || 3000;
-
-app.get("/", (req, res) => {
-  res.status(200).send("OK");
-});
 
 app.use("/post", routes.post);
 app.use("/user", routes.user);
+
+const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => console.log("listening on port: " + PORT));
