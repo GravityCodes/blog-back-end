@@ -2,7 +2,7 @@
 FROM node:24
 
 # Goes to the app directory
-WORKDIR /
+WORKDIR /app
 
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
@@ -15,10 +15,6 @@ COPY . .
 
 # generate prisma schema
 RUN npx prisma generate
-RUN npx primsa migrate dev --name init
-
-# Set port environment variable
-ENV PORT=3000
 
 # Expose the port so our computer can access it
 EXPOSE 3000
