@@ -10,8 +10,12 @@ COPY package*.json ./
 # Install app dependecies
 RUN npm install
 
-#Copy the rest of our app into the container
+# Copy the rest of our app into the container
 COPY . .
+
+# Copy entrypoint script and make it executable
+COPY docker-entrypoint.sh .
+RUN chmod +x docker-entrypoint.sh
 
 # generate prisma schema
 RUN npx prisma generate
@@ -20,4 +24,4 @@ RUN npx prisma generate
 EXPOSE 3000
 
 # Run the app
-CMD ["npm", "start"]
+CMD ["./docker-entrypoint.sh"]
