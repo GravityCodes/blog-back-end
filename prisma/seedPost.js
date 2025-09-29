@@ -109,7 +109,7 @@ const postList = [
     publish: true,
   },
   {
-    id: 3,
+    id: 9,
     title: "Getting Started with Git and GitHub",
     content: {
       time: 1745880200000,
