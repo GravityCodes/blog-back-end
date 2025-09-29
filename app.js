@@ -27,4 +27,4 @@ const PORT = 3000 || process.env.PORT;
 
 app.use("/post", routes.post);
 app.use("/user", routes.user);
-app.listen(3000, () => console.log("listening on port: " + PORT));
+app.listen(PORT, () => console.log("listening on port: " + PORT));
