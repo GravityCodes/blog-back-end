@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 3000;
 
-app.js("/", (req, res) => {
+app.use("/", (req, res) => {
   res.send("Server is running");
 });
 
