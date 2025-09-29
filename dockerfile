@@ -15,6 +15,7 @@ COPY . .
 
 # generate prisma schema
 RUN npx prisma generate
+RUN npx primsa migrate dev --name init
 
 # Set port environment variable
 ENV PORT=3000
