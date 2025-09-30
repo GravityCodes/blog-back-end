@@ -95,6 +95,7 @@ const loginUser = async (req, res) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production" ? true : false,
         sameSite: "none",
+        domain: process.env.COOKIE_DOMAIN_NAME
       })
       .json({ msg: "Login successful" });
   } catch (err) {
@@ -178,6 +179,7 @@ const logoutUser = async (req, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production" ? true : false,
     sameSite: "none",
+    
   });
 
   res.status(200).json({ msg: "Logged out succesfully" });
