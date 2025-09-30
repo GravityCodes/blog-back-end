@@ -94,7 +94,7 @@ const loginUser = async (req, res) => {
         maxAge: milliseconds,
         httpOnly: true,
         secure: process.env.NODE_ENV === "production" ? true : false,
-        sameSite: "lax",
+        sameSite: "none",
       })
       .json({ msg: "Login successful" });
   } catch (err) {
@@ -162,7 +162,7 @@ const loginAdmin = async (req, res) => {
         maxAge: milliseconds,
         httpOnly: true,
         secure: process.env.NODE_ENV === "production" ? true : false,
-        sameSite: "lax",
+        sameSite: "none",
       })
       .json({ msg: "Login successful" });
   } catch (err) {
@@ -177,7 +177,7 @@ const logoutUser = async (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production" ? true : false,
-    sameSite: "lax",
+    sameSite: "none",
   });
 
   res.status(200).json({ msg: "Logged out succesfully" });
