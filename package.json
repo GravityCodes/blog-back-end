@@ -6,7 +6,7 @@
     "start": "node app.js"
   },
   "prisma": {
-    "seed": "node prisma/seedUser.js"
+    "seed": "node prisma/seedPost.js"
   },
   "repository": {
     "type": "git",
