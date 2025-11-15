@@ -46,4 +46,5 @@ npm run start
 # Tech
 
 [Express](https://expressjs.com/) - Web framework for nodejs.
+
 [Prisma](https://www.prisma.io/) - Prisma ORM for javascript to interact with database.
