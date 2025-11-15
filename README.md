@@ -2,6 +2,11 @@
 
 This is the backend of TheOdinProject's Blog API. The focus of this project was to learn about API's basics and security.
 
+## Related Repositories
+[Frontend](https://github.com/GravityCodes/blog-front-end) - blog frontend.
+
+[Admin](https://github.com/GravityCodes/blog-admin-end) - blog admin page.
+
 ## Features
 
 - Aunthenticate users with jsonwebtokens and cookies.
@@ -40,5 +45,5 @@ npm run start
 
 # Tech
 
-[Express] (https://expressjs.com/) - Web framework for nodejs.
-[Prisma] (https://www.prisma.io/) - Prisma ORM for javascript to interact with database.
+[Express](https://expressjs.com/) - Web framework for nodejs.
+[Prisma](https://www.prisma.io/) - Prisma ORM for javascript to interact with database.
